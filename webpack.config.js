@@ -25,7 +25,7 @@ const common = merge([
     plugins: [
       new HtmlWebpackPlugin({
         template: HtmlWebpackTemplate,
-        title: 'Checkin',
+        title: 'Check-in',
         appMountId: 'app',
         mobile: true,
         inject: false
@@ -58,9 +58,7 @@ module.exports = function (env) {
     }),
     parts.lintCSS(
       PATHS.app,
-      {
-        'color-hex-case': 'lower'
-      }
+      {}
     )
   ])
 }

@@ -1,10 +1,15 @@
 import React from 'react'
+import { Router, Route, Link, IndexRoute, hashHistory, browserHistory } from 'react-router'
+import Checkin from './checkin'
+import Home from './home'
+
 export default class App extends React.Component {
-  render () {
+  render() {
     return (
-      <div className='app'>
-        <h1>Hello World!</h1>
-      </div>
+      <Router history={hashHistory}>
+        <Route path='/' component={Home} />
+        <Route path='/check-in' component={Checkin} />
+      </Router>
     )
   }
 }
