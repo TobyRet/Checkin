@@ -2,8 +2,8 @@ import React from 'react'
 
 export default () => {
   return (
-    <div>
-      <h3>I am the footer</h3>
-    </div>
+      <div className="footer l-box is-center">
+        By Toby
+      </div>
   )
 }

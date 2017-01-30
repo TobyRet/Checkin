@@ -1,4 +1,6 @@
 import React from 'react'
+import uuid from 'uuid'
+import GithubClient from './githubClient'
 
 export default class CheckinForm extends React.Component {
 
@@ -8,10 +10,18 @@ export default class CheckinForm extends React.Component {
       date: '',
       yesterday: '',
       today: '',
-      questions: ''
+      questions: '',
+      pullRequests: GithubClient.getPullRequests(),
+      pullRequestWindow: false
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
+    this.expandPullRequestWindow = this.expandPullRequestWindow.bind(this)
+  }
+
+  expandPullRequestWindow(e) {
+    e.preventDefault()
+    this.setState({pullRequestWindow: !this.state.pullRequestWindow})
   }
 
   handleChange(e) {
@@ -20,23 +30,41 @@ export default class CheckinForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault()
-    console.log(this.state)
+    const id = uuid.v4()
+    localStorage.setItem(id, this.state)
   }
 
-
-
   render () {
+    let pullRequests;
+
+    if (this.state.pullRequestWindow) {
+      pullRequests = <div className='pull-requests' onClick={this.expandPullRequestWindow} >
+        <h3>Pull Requests</h3>
+        {this.state.pullRequests.map(pr => {
+          return(
+            <label className="pure-checkbox">
+              <input type="checkbox"/> <span><a href={pr['html_url']}>{pr['title']}</a></span>
+            </label>
+            )
+        })}
+      </div>
+    } else {
+      pullRequests = <a href="#" onClick={this.expandPullRequestWindow}>Add pull requests</a>
+    }
+
     return (
       <div className='pure-u-6-24'>
         <form className='pure-form pure-form-stacked'>
           <label>Date</label>
           <input name='date' value={this.state.date} onChange={this.handleChange} type='date' />
           <label>Yesterday</label>
-          <input name='yesterday' value={this.state.yesterday} onChange={this.handleChange} type='text' />
+          <textArea name='yesterday' className='pure-input-1' value={this.state.yesterday} onChange={this.handleChange} type='text' />
+          {pullRequests}
+          <div className='pull-request-window'></div>
           <label>Today</label>
-          <input name='today' value={this.state.today} onChange={this.handleChange} type='text' />
+          <textarea name='today' className='pure-input-1' value={this.state.today} onChange={this.handleChange} type='text' />
           <label>Questions / Blockers</label>
-          <input name='questions' value={this.state.questions} onChange={this.handleChange} type='text' />
+          <textArea name='questions' className='pure-input-1' value={this.state.questions} onChange={this.handleChange} type='text' />
           <button onClick={this.handleSubmit} className='pure-button pure-button-primary'>Check-in</button>
         </form>
       </div>

@@ -35,7 +35,7 @@ label {
  * These are some useful classes which I will need
  */
 .l-box {
-    padding: 1em;
+    padding: 2em;
 }
 
 .l-box-lrg {
@@ -53,6 +53,11 @@ label {
  * -- PURE FORM STYLES --
  * Style the form inputs and labels
  */
+
+.pure-form {
+    margin-top: 4em;
+}
+
 .pure-form label {
     margin: 1em 0 0;
     font-weight: bold;
@@ -284,4 +289,22 @@ a.pure-button-primary {
     .splash-head {
         font-size: 300%;
     }
+}
+
+/* Custom */
+
+.nav-active {
+    color: white;
+}
+
+.standup-container {
+    padding-top: 5em;
+}
+
+.pull-requests {
+    /*color: white;*/
+    border: 1px solid;
+    padding: 1em 1.6em;
+    border-radius: 5px;
+    line-height: 1em;
 }
