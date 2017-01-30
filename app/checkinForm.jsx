@@ -12,16 +12,31 @@ export default class CheckinForm extends React.Component {
       today: '',
       questions: '',
       pullRequests: GithubClient.getPullRequests(),
+      selectedPullRequests: [],
       pullRequestWindow: false
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.expandPullRequestWindow = this.expandPullRequestWindow.bind(this)
+    this.collapsePullRequestWindow = this.collapsePullRequestWindow.bind(this)
+    this.selectPullRequest = this.selectPullRequest.bind(this)
   }
 
   expandPullRequestWindow(e) {
     e.preventDefault()
-    this.setState({pullRequestWindow: !this.state.pullRequestWindow})
+    this.setState({pullRequestWindow: true})
+  }
+
+  collapsePullRequestWindow(e) {
+    e.preventDefault()
+    this.setState({pullRequestWindow: false})
+  }
+
+  selectPullRequest(e) {
+    let selectedPullRequests = this.state.selectedPullRequests.slice()
+    const pullRequest = this.state.pullRequests.filter(pr => e.target.id === pr['id'])
+    selectedPullRequests.push(pullRequest)
+    this.setState({selectedPullRequests: selectedPullRequests})
   }
 
   handleChange(e) {
@@ -31,22 +46,24 @@ export default class CheckinForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault()
     const id = uuid.v4()
-    localStorage.setItem(id, this.state)
+    localStorage.setItem(id, JSON.stringify(this.state))
   }
 
   render () {
     let pullRequests;
 
     if (this.state.pullRequestWindow) {
-      pullRequests = <div className='pull-requests' onClick={this.expandPullRequestWindow} >
-        <h3>Pull Requests</h3>
+      pullRequests =
+      <div className='pull-requests' >
+        <p>Add your pull requests</p>
         {this.state.pullRequests.map(pr => {
           return(
-            <label className="pure-checkbox">
-              <input type="checkbox"/> <span><a href={pr['html_url']}>{pr['title']}</a></span>
+            <label key={pr['id']} className="pure-checkbox">
+              <input type="checkbox" id={pr['id']} onClick={this.selectPullRequest}/><span><a className='pull-request' href={pr['html_url']}>{pr['title']}</a></span>
             </label>
             )
         })}
+        <button onClick={this.collapsePullRequestWindow} className='pure-button pure-button-primary'>Cancel</button>
       </div>
     } else {
       pullRequests = <a href="#" onClick={this.expandPullRequestWindow}>Add pull requests</a>
