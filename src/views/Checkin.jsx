@@ -1,6 +1,6 @@
 import React from 'react'
 import uuid from 'uuid'
-import GithubClient from './githubClient'
+import GithubClient from '../utils/GithubClient'
 
 export default class CheckinForm extends React.Component {
 

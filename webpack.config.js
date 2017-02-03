@@ -9,7 +9,7 @@ const parts = require('./webpack.parts')
 const fs = require('fs')
 
 const PATHS = {
-  app: path.join(__dirname, 'app'),
+  app: path.join(__dirname, 'src'),
   build: path.join(__dirname, 'build')
 }
 

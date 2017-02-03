@@ -2,8 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import 'purecss'
 
-import App from './app'
-import './main.css'
+import App from './containers/App'
+import './styles/main.css'
 
 ReactDOM.render(
   <App />,

@@ -1,11 +1,11 @@
 import React from 'react'
 import { Router, Route, IndexRoute, hashHistory } from 'react-router'
-import Container from './container'
-import CheckinForm from './checkinForm'
-import Home from './home'
-import NotFound from './notFound'
-import Standup from './standup'
-import AuthService from './utils/AuthService'
+import Container from './Container'
+import CheckinForm from '../views/Checkin'
+import Home from '../views/Home'
+import NotFound from '../views/404'
+import Standup from '../views/Standup'
+import AuthService from '../utils/AuthService'
 
 const auth = new AuthService(__AUTH0_CLIENT_ID__, __AUTH0_DOMAIN__)
 

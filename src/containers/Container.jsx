@@ -1,5 +1,5 @@
 import React from 'react'
-import Nav from './nav'
+import Nav from '../partials/Nav'
 
 export class Container extends React.Component {
   render() {
