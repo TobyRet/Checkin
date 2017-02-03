@@ -1,9 +1,12 @@
+require('dotenv').config()
 const path = require('path')
 const HtmlWebpackTemplate = require('html-webpack-template')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const merge = require('webpack-merge')
 const webpack = require('webpack')
+const dotenv = require('dotenv');
 const parts = require('./webpack.parts')
+const fs = require('fs')
 
 const PATHS = {
   app: path.join(__dirname, 'app'),
@@ -51,6 +54,15 @@ module.exports = function (env) {
         new webpack.NamedModulesPlugin()
       ]
     },
+    parts.setFreeVariable(
+      '__AUTH0_CLIENT_ID__',
+      process.env.AUTH0_CLIENT_ID
+    ),
+    parts.setFreeVariable(
+      '__AUTH0_DOMAIN__',
+      process.env.AUTH0_DOMAIN
+    ),
+
     parts.loadCSS(),
     parts.devServer({
       host: process.env.HOST,

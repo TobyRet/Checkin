@@ -99,6 +99,18 @@ exports.loadJavascript = function (paths) {
   }
 }
 
+
+exports.setFreeVariable = function(key, value) {
+  const env = {};
+  env[key] = JSON.stringify(value);
+
+  return {
+    plugins: [
+      new webpack.DefinePlugin(env),
+    ],
+  }
+}
+
 exports.lintCSS = function (paths, rules) {
   return {
     module: {
