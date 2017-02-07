@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import { shallow } from 'enzyme'
 import React from 'react'
-import App from '../src/containers/App'
+import App from '../app/containers/App'
 
 
 describe('<App/>', () => {

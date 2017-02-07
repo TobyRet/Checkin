@@ -62,7 +62,7 @@ exports.extractCSS = function (paths) {
       ]
     },
     plugins: [
-      new ExtractTextPlugin('styles/[name].css')
+      new ExtractTextPlugin('[name].css')
     ]
   }
 }

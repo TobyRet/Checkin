@@ -1,15 +1,15 @@
-require('dotenv').config()
+const dotEnv = require('dotenv')
+dotEnv.config()
 const path = require('path')
 const HtmlWebpackTemplate = require('html-webpack-template')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const merge = require('webpack-merge')
 const webpack = require('webpack')
-const dotenv = require('dotenv');
 const parts = require('./webpack.parts')
 const fs = require('fs')
 
 const PATHS = {
-  app: path.join(__dirname, 'src'),
+  app: path.join(__dirname, 'app'),
   build: path.join(__dirname, 'build')
 }
 
@@ -42,6 +42,14 @@ module.exports = function (env) {
   if (env === 'production') {
     return merge([
       common,
+      parts.setFreeVariable(
+        '__AUTH0_CLIENT_ID__',
+        process.env.AUTH0_CLIENT_ID
+      ),
+      parts.setFreeVariable(
+        '__AUTH0_DOMAIN__',
+        process.env.AUTH0_DOMAIN
+      ),
       parts.extractCSS(),
       parts.purifyCSS(PATHS.app)
     ])
