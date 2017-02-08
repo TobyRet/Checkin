@@ -18,6 +18,13 @@ export default class AuthService {
   _doAuthentication(authResult) {
     this.setToken(authResult.idToken)
     browserHistory.replace('/')
+    this.lock.getProfile(authResult.idToken, (error, profile) => {
+      if(error) {
+        console.log('Error loading the Profile', error)
+      } else {
+        this.setProfile(profile)
+      }
+    })
   }
 
   login() {
@@ -32,12 +39,22 @@ export default class AuthService {
     localStorage.setItem('id_token', idToken)
   }
 
+  getProfile(){
+    const profile = localStorage.getItem('profile')
+    return profile ? JSON.parse(localStorage.profile) : {}
+  }
+
+  setProfile(profile) {
+    localStorage.setItem('profile', JSON.stringify(profile))
+  }
+
   getToken() {
     return localStorage.getItem('id_token')
   }
 
   logout() {
     localStorage.removeItem('id_token')
+    localStorage.removeItem('profile')
     window.location = '/'
   }
 }

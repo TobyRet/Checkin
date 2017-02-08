@@ -48,39 +48,42 @@ export default class CheckinForm extends React.Component {
   }
 
   render () {
-    let pullRequests;
-
-    if (this.state.pullRequestWindow) {
-      pullRequests =
-      <div className='pull-requests' >
-        <p>Add your pull requests</p>
+    const pullRequests = this.state.pullRequestWindow
+    ? <div>
+      <label>Pull Requests</label>
         {this.state.pullRequests.map(pr => {
-          return(
-            <label key={pr['id']} className="pure-checkbox">
-              <input type="checkbox" id={pr['id']} onClick={this.selectPullRequest}/><span><a className='pull-request' href={pr['html_url']}>{pr['title']}</a></span>
-            </label>
-            )
+          return (
+            <div key={pr['id']}>
+              <input type="checkbox" onClick={this.selectPullRequest} />  {pr['title']}
+            </div>
+          )
         })}
-        <button onClick={this.collapsePullRequestWindow} className='pure-button pure-button-primary'>Cancel</button>
+        <button onClick={this.collapsePullRequestWindow} className='pure-button button-danger button-small'>Cancel</button>
       </div>
-    } else {
-      pullRequests = <a href="#" onClick={this.expandPullRequestWindow}>Add pull requests</a>
-    }
+    : <button className='pure-button button-small' onClick={this.expandPullRequestWindow}>Add pull requests</button>
 
     return (
-      <div className='pure-u-6-24'>
+      <div className='pure-u-3-5'>
         <form className='pure-form pure-form-stacked'>
-          <label>Date</label>
-          <input name='date' value={this.state.date} onChange={this.handleChange} type='date' />
-          <label>Yesterday</label>
-          <textArea name='yesterday' className='pure-input-1' value={this.state.yesterday} onChange={this.handleChange} type='text' />
-          {pullRequests}
-          <div className='pull-request-window'></div>
-          <label>Today</label>
-          <textarea name='today' className='pure-input-1' value={this.state.today} onChange={this.handleChange} type='text' />
-          <label>Questions / Blockers</label>
-          <textArea name='questions' className='pure-input-1' value={this.state.questions} onChange={this.handleChange} type='text' />
-          <button onClick={this.handleSubmit} className='pure-button pure-button-primary'>Check-in</button>
+          <fieldset>
+            <legend>Check-in to your scrum meeting</legend>
+
+            <label>Date</label>
+            <input name='date' className='pure-input-1' value={this.state.date} onChange={this.handleChange} type='date' />
+
+            <label>Yesterday</label>
+            <textArea name='yesterday' className='pure-input-1' value={this.state.yesterday} onChange={this.handleChange} type='text' />
+
+            {pullRequests}
+
+            <label>Today</label>
+            <textarea name='today' className='pure-input-1' value={this.state.today} onChange={this.handleChange} type='text' />
+
+            <label>Questions / Blockers</label>
+            <textArea name='questions' className='pure-input-1' value={this.state.questions} onChange={this.handleChange} type='text' />
+
+            <button onClick={this.handleSubmit} className='checkin-submit-btn pure-button button-xlarge pure-button-primary'>Check-in</button>
+          </fieldset>
         </form>
       </div>
     )

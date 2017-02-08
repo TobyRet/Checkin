@@ -301,6 +301,23 @@ a.pure-button-primary {
     color: white;
 }
 
+.button-small {
+    font-size: 85%;
+}
+
+.button-xlarge {
+    font-size: 125%;
+}
+
+.button-danger {
+    background: rgb(202, 60, 60);
+}
+
+.checkin-submit-btn {
+    margin-top: 2em;
+    text-align: center;
+}
+
 .standup-container {
     padding-top: 5em;
 }
@@ -311,4 +328,22 @@ a.pure-button-primary {
     padding: 1em;
     border-radius: 5px;
 }
+
+.standup-checkins {
+    list-style: none;
+}
+
+.standup-summary {
+    display: inline-block;
+}
+
+.standup-avatar {
+    height: 6em;
+    border-radius: 3em;
+}
+
+.standup-avatar-container {
+    margin-right: 3em;
+}
+
 

@@ -1,4 +1,5 @@
 import React from 'react'
+import CheckinService from '../utils/CheckinService'
 
 export default class Standup extends React.Component {
   constructor(props) {
@@ -6,7 +7,8 @@ export default class Standup extends React.Component {
     this.openReportWindow = this.openReportWindow.bind(this)
     this.closeReportWindow = this.closeReportWindow.bind(this)
     this.state = {
-      reportWindow: false
+      reportWindow: false,
+      checkins: CheckinService.getCheckins()
     }
   }
 
@@ -36,12 +38,17 @@ export default class Standup extends React.Component {
       <div className='standup-container'>
         <h1>14 Feb 2017</h1>
         <div>
-          <ul>
+          <ul className='standup-checkins'>
             <li>
               <div>
-                <p>9.00am</p>
-                <p>Toby has checked in!</p>
-                {report}
+                <div className='standup-summary standup-avatar-container'>
+                  <img src={JSON.parse(localStorage.profile).picture} className='pure-img standup-avatar' />
+                </div>
+                <div className='standup-summary'>
+                  <h3>9.00am</h3>
+                  <p>Toby has checked in!</p>
+                  {report}
+                </div>
               </div>
             </li>
           </ul>
