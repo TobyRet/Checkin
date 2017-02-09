@@ -1,19 +1,17 @@
 import React from 'react'
 import GithubClient from '../utils/GithubClient'
+import moment from 'moment'
 
 export default class CheckinForm extends React.Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      date: '',
-      yesterday: '',
-      today: '',
-      questions: '',
-      pullRequests: GithubClient.getPullRequests(),
-      selectedPullRequests: [],
-      pullRequestWindow: false
+        date: moment(),
+        pullRequests: GithubClient.getPullRequests(),
+        pullRequestWindow: false
     }
+    this.createFormattedDate = this.createFormattedDate.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.expandPullRequestWindow = this.expandPullRequestWindow.bind(this)
@@ -38,13 +36,27 @@ export default class CheckinForm extends React.Component {
     this.setState({selectedPullRequests: selectedPullRequests})
   }
 
+  createFormattedDate() {
+    return this.state.date.format('h:mma - MMMM Do YYYY')
+  }
+
   handleChange(e) {
-    this.setState({[e.target.name]: e.target.value})
+    this.setState({
+      [e.target.name]: e.target.value
+    })
   }
 
   handleSubmit(e) {
     e.preventDefault()
-    localStorage.setItem('checkins', [JSON.stringify(this.state)])
+    const checkin = {
+      date: this.state.date,
+      yesterday:this.state.yesterday,
+      today: this.state.today,
+      questions: this.state.questions,
+      selectedPullRequests: this.state.selectedPullRequests
+    }
+    localStorage.setItem('checkin', JSON.stringify(checkin))
+    window.location.href ='/#/stand-up'
   }
 
   render () {
@@ -66,20 +78,20 @@ export default class CheckinForm extends React.Component {
       <div className='pure-u-3-5'>
         <form className='pure-form pure-form-stacked'>
           <fieldset>
-            <legend>Check-in to your scrum meeting</legend>
+            <legend>Check-in to your meeting</legend>
 
             <label>Date</label>
-            <input name='date' className='pure-input-1' value={this.state.date} onChange={this.handleChange} type='date' />
+            <input name='date' className='pure-input-1' placeholder={this.createFormattedDate()} disabled='true'/>
 
-            <label>Yesterday</label>
+            <label>What did you do yesterday?</label>
             <textArea name='yesterday' className='pure-input-1' value={this.state.yesterday} onChange={this.handleChange} type='text' />
 
             {pullRequests}
 
-            <label>Today</label>
+            <label>What will you do today?</label>
             <textarea name='today' className='pure-input-1' value={this.state.today} onChange={this.handleChange} type='text' />
 
-            <label>Questions / Blockers</label>
+            <label>List any questions or blockers</label>
             <textArea name='questions' className='pure-input-1' value={this.state.questions} onChange={this.handleChange} type='text' />
 
             <button onClick={this.handleSubmit} className='checkin-submit-btn pure-button button-xlarge pure-button-primary'>Check-in</button>
