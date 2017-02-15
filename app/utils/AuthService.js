@@ -52,6 +52,27 @@ export default class AuthService {
     return localStorage.getItem('id_token')
   }
 
+  fetch(url, options) {
+    // performs api calls sending the required authentication headers
+    const headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'User-Agent': 'Checkin'
+    }
+    // if logged in, includes the authorization header
+    console.log('Here is the token', this.getToken())
+
+    if (this.loggedIn()) {
+      headers['Authorization'] = 'Bearer ' + this.getToken()
+    }
+
+    return fetch(url, {
+      headers
+    })
+      .then(response => response.json())
+      .then(json => Promise.resolve(console.log(json)))// to parse the response as json
+  }
+
   logout() {
     localStorage.removeItem('id_token')
     localStorage.removeItem('profile')

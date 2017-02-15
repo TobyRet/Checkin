@@ -1,6 +1,10 @@
 import React from 'react'
 import GithubClient from '../utils/GithubClient'
+import Auth from '../utils/AuthService'
 import moment from 'moment'
+
+const auth = new Auth(__AUTH0_CLIENT_ID__,__AUTH0_DOMAIN__)
+
 
 export default class CheckinForm extends React.Component {
 
@@ -9,6 +13,7 @@ export default class CheckinForm extends React.Component {
     this.state = {
         date: moment(),
         pullRequests: GithubClient.getPullRequests(),
+        commits: auth.fetch('https://api.github.com/users/tobyret/events'),
         pullRequestWindow: false
     }
     this.createFormattedDate = this.createFormattedDate.bind(this)

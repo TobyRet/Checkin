@@ -57,11 +57,6 @@ module.exports = function (env) {
 
   return merge([
     common,
-    {
-      plugins: [
-        new webpack.NamedModulesPlugin()
-      ]
-    },
     parts.setFreeVariable(
       '__AUTH0_CLIENT_ID__',
       process.env.AUTH0_CLIENT_ID
@@ -70,7 +65,11 @@ module.exports = function (env) {
       '__AUTH0_DOMAIN__',
       process.env.AUTH0_DOMAIN
     ),
-
+    {
+      plugins: [
+        new webpack.NamedModulesPlugin()
+      ]
+    },
     parts.loadCSS(),
     parts.devServer({
       host: process.env.HOST,
