@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes as T }  from 'react'
 import Nav from '../partials/Nav'
 
 export class Container extends React.Component {

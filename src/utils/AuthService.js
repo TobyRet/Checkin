@@ -18,6 +18,13 @@ export default class AuthService {
   _doAuthentication(authResult) {
     this.setToken(authResult.idToken)
     browserHistory.replace('/')
+    this.lock.getProfile(authResult.idToken, (error, profile) => {
+      if(error) {
+        console.log('Error loading the Profile', error)
+      } else {
+        this.setProfile(profile)
+      }
+    })
   }
 
   login() {
@@ -32,12 +39,43 @@ export default class AuthService {
     localStorage.setItem('id_token', idToken)
   }
 
+  getProfile(){
+    const profile = localStorage.getItem('profile')
+    return profile ? JSON.parse(localStorage.profile) : {}
+  }
+
+  setProfile(profile) {
+    localStorage.setItem('profile', JSON.stringify(profile))
+  }
+
   getToken() {
     return localStorage.getItem('id_token')
   }
 
+  fetch(url, options) {
+    // performs api calls sending the required authentication headers
+    const headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'User-Agent': 'Checkin'
+    }
+    // if logged in, includes the authorization header
+    console.log('Here is the token', this.getToken())
+
+    if (this.loggedIn()) {
+      headers['Authorization'] = 'Bearer ' + this.getToken()
+    }
+
+    return fetch(url, {
+      headers
+    })
+      .then(response => response.json())
+      .then(json => Promise.resolve(console.log(json)))// to parse the response as json
+  }
+
   logout() {
     localStorage.removeItem('id_token')
+    localStorage.removeItem('profile')
     window.location = '/'
   }
 }

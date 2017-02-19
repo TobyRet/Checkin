@@ -9,14 +9,14 @@ const parts = require('./webpack.parts')
 const fs = require('fs')
 
 const PATHS = {
-  app: path.join(__dirname, 'app'),
+  src: path.join(__dirname, 'src'),
   build: path.join(__dirname, 'build')
 }
 
 const common = merge([
   {
     entry: {
-      app: PATHS.app
+      app: PATHS.src
     },
     output: {
       path: PATHS.build,
@@ -35,7 +35,7 @@ const common = merge([
       })
     ]
   },
-  parts.loadJavascript(PATHS.app)
+  parts.loadJavascript(PATHS.src)
 ])
 
 module.exports = function (env) {
@@ -51,7 +51,7 @@ module.exports = function (env) {
         process.env.AUTH0_DOMAIN
       ),
       parts.extractCSS(),
-      parts.purifyCSS(PATHS.app)
+      parts.purifyCSS(PATHS.src)
     ])
   }
 
@@ -76,7 +76,7 @@ module.exports = function (env) {
       port: process.env.PORT
     }),
     parts.lintCSS(
-      PATHS.app,
+      PATHS.src,
       {}
     )
   ])

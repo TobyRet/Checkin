@@ -1,11 +1,11 @@
 function getCheckins() {
 
-  const localStorageCheckin = {
-    checkin: JSON.parse(localStorage.checkin),
-    profile: JSON.parse(localStorage.profile)
-  }
-
-  localStorageCheckin.checkin.reportWindow = false
+  // const localStorageCheckin = {
+  //   checkin: JSON.parse(localStorage.checkin),
+  //   profile: JSON.parse(localStorage.profile)
+  // }
+  //
+  // localStorageCheckin.checkin.reportWindow = false
 
   const dummyCheckin_1 = {
     profile: {
@@ -53,7 +53,7 @@ function getCheckins() {
   }
 
   return [
-      localStorageCheckin,
+      // localStorageCheckin,
       dummyCheckin_1,
       dummyCheckin_2,
       dummyCheckin3,

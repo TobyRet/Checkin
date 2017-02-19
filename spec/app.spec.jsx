@@ -1,13 +1,27 @@
+import React from 'react'
 import { expect } from 'chai'
 import { shallow } from 'enzyme'
-import React from 'react'
-import App from '../app/containers/App'
 
+import App from '../src/containers/App'
 
-describe('<App/>', () => {
-  it('render', () => {
-    const wrapper = shallow(<App />)
-    expect(wrapper.text()).to.equal('Hello World!')
+describe('<App />', () => {
+  let wrapper;
+  let history = {};
+
+  beforeEach(() => {
+    wrapper =
+      shallow(<App history={history}/>)
   })
-})
 
+  it('has a Router component', () => {
+    expect(wrapper.find('Router'))
+      .to.have.length(1);
+  });
+
+  it('passes a history prop', () => {
+    const props = wrapper.find('Router').props();
+
+    expect(props.history).to.be.defined;
+  })
+
+});
