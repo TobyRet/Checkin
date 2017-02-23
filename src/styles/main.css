@@ -301,6 +301,23 @@ a.pure-button-primary {
     color: white;
 }
 
+.button-small {
+    font-size: 85%;
+}
+
+.button-xlarge {
+    font-size: 125%;
+}
+
+.button-danger {
+    background: rgb(202, 60, 60);
+}
+
+.checkin-submit-btn {
+    margin-top: 2em;
+    text-align: center;
+}
+
 .standup-container {
     padding-top: 5em;
 }
@@ -312,3 +329,43 @@ a.pure-button-primary {
     border-radius: 5px;
 }
 
+.standup-checkins {
+    list-style: none;
+}
+
+.standup-avatar {
+    height: 6em;
+    width: 6em;
+    border-radius: 3em;
+}
+
+.standup-avatar-container {
+    margin-right: 3em;
+    margin-top: 1em;
+    vertical-align: top;
+    float: left;
+    clear: both;
+}
+
+.standup-checkin {
+    border: 1px solid #ecf0f1;
+    padding: 1em;
+    border-radius: 1em;
+    margin: 20px;
+}
+
+.standup-report {
+    background: #ecf0f1;
+    margin-top: 3em;
+    padding: 1em;
+    border-radius: 1em;
+}
+
+.standup-report-close-btn {
+    float: right;
+    margin-top: 1em;
+}
+
+.checkin-commit-msg {
+    margin-left: 1em;
+}

@@ -9,7 +9,7 @@ export default () => {
           Remote-friendly scrum checkins without the annoying meetings.
         </p>
         <p>
-          <a href="/#/check-in" className="pure-button pure-button-primary">Check-in</a>
+          <a href="/check-in" className="pure-button pure-button-primary">Check-in</a>
         </p>
       </div>
     </div>

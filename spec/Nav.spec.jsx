@@ -30,7 +30,7 @@ describe('<Nav />', () => {
       expect(wrapper.find('ul')).to.have.length(1)
     })
 
-    it('should contain a link to log out', () => {
+    it('should contain a nav element for logging out', () => {
       expect(wrapper.find('.nav-logout')).to.have.length(1)
     })
   })
@@ -48,6 +48,5 @@ describe('<Nav />', () => {
     it('should contain a link to log in', () => {
       expect(wrapper.find('.nav-login')).to.have.length(1)
     })
-
   })
 })
