@@ -6,8 +6,11 @@ export default (props) => {
   const auth = props.auth
   if (auth.loggedIn()) {
     nav = <ul className='pure-menu-list'>
-      <li key='1' className='pure-menu-item'>
-        <IndexLink to='/' activeClassName='nav-active' className='pure-menu-link'>Home</IndexLink>
+      <li key='6' className='pure-menu-item'>
+        <img className='pure-img nav-avatar' src={auth.getProfile().picture}/>
+      </li>
+      <li key='5' className='pure-menu-item'>
+        <IndexLink to='/' className='pure-menu-link'>Hey {auth.getProfile().nickname}</IndexLink>
       </li>
       <li key='2' className='pure-menu-item'>
         <IndexLink to='/check-in' activeClassName='nav-active' className='pure-menu-link'>Check-in</IndexLink>

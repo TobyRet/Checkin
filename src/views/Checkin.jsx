@@ -37,7 +37,7 @@ export default class CheckinForm extends React.Component {
 
   selectCommit(e) {
     let selectedCommits = this.state.selectedCommits.slice()
-    const commit = this.state.commits.filter(pr => e.target.id === pr['id'])
+    const commit = e.target.value
     selectedCommits.push(commit)
     this.setState({selectedCommits: selectedCommits})
   }
@@ -74,7 +74,7 @@ export default class CheckinForm extends React.Component {
           console.log(commit)
           return (
             <div key={commit.id}>
-              <input type="checkbox" onClick={this.selectCommit} /><span className='checkin-commit-msg'>{commit.payload.commits[0].message.slice(0, 50)} ...</span>
+              <input type="checkbox" onClick={this.selectCommit} value={commit.payload.commits[0].message} /><span className='checkin-commit-msg'>{commit.payload.commits[0].message.slice(0, 50)} ...</span>
             </div>
           )
         })}
