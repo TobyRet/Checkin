@@ -37,7 +37,7 @@ export default (props) => {
   return (
     <div className='header'>
       <div className='home-menu pure-menu pure-menu-horizontal pure-menu-fixed'>
-        <a className='pure-menu-heading' href=''>Check-in</a>
+        <a className='pure-menu-heading' href='/'>Check-in</a>
         { nav }
       </div>
     </div>

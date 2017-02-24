@@ -1,7 +1,6 @@
 import React from 'react'
 import CheckinService from '../utils/CheckinService'
 import moment from 'moment'
-import ReactCountdownClock from 'react-countdown-clock'
 
 export default class Standup extends React.Component {
   constructor(props) {
