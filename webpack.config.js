@@ -24,16 +24,7 @@ const common = merge([
     },
     resolve: {
       extensions: ['.js', '.jsx']
-    },
-    plugins: [
-      new HtmlWebpackPlugin({
-        template: HtmlWebpackTemplate,
-        title: 'Check-in',
-        appMountId: 'app',
-        mobile: true,
-        inject: false
-      })
-    ]
+    }
   },
   parts.loadJavascript(PATHS.src)
 ])
@@ -50,8 +41,7 @@ module.exports = function (env) {
         '__AUTH0_DOMAIN__',
         process.env.AUTH0_DOMAIN
       ),
-      parts.extractCSS(),
-      parts.purifyCSS(PATHS.src)
+      parts.extractCSS()
     ])
   }
 
@@ -74,10 +64,6 @@ module.exports = function (env) {
     parts.devServer({
       host: process.env.HOST,
       port: process.env.PORT
-    }),
-    parts.lintCSS(
-      PATHS.src,
-      {}
-    )
+    })
   ])
 }
