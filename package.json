@@ -6,7 +6,8 @@
   "scripts": {
     "lint": "$(npm bin)/standard",
     "build": "webpack --env production",
-    "start": "nodemon --watch webpack.config.js --exec \"webpack-dev-server --env development\"",
+    "start-dev": "nodemon --watch webpack.config.js --exec \"webpack-dev-server --env development\"",
+    "start": "node server.js",
     "test": "mocha --compilers jsx:babel-core/register --recursive ./spec"
   },
   "standard": {
