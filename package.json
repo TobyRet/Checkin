@@ -45,11 +45,11 @@
     "style-loader": "^0.13.1",
     "stylelint": "^7.7.1",
     "uuid": "^3.0.1",
-    "webpack": "^2.2.0",
     "webpack-dev-server": "^2.2.0",
     "webpack-merge": "^2.4.0"
   },
   "dependencies": {
+    "webpack": "^2.2.0",
     "auth0-lock": "^10.10.2",
     "dotenv": "^4.0.0",
     "es6-promise": "^4.0.5",
