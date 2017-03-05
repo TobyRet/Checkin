@@ -1,6 +1,6 @@
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const PurifyCSSPlugin = require('purifycss-webpack-plugin')
+const PurifyCSSPlugin = require('purifycss-webpack')
 
 exports.devServer = function (options) {
   return {
