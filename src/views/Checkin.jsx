@@ -1,4 +1,5 @@
 import React from 'react'
+import Commits from './Commits'
 import moment from 'moment'
 
 export default class CheckinForm extends React.Component {
@@ -21,9 +22,9 @@ export default class CheckinForm extends React.Component {
   }
 
   expandCommitsWindow(e) {
-    e.preventDefault()
     this.setState({commitsWindow: true})
     const url = 'https://api.github.com/users/tobyret/events'
+
     this.props.route.fetchCommits(url)
       .then(commits => {
         this.setState({commits: commits.filter(commit => commit.payload.commits).slice(0, 5)})
@@ -31,7 +32,6 @@ export default class CheckinForm extends React.Component {
   }
 
   collapseCommitsWindow(e) {
-    e.preventDefault()
     this.setState({commitsWindow: false})
   }
 
@@ -68,19 +68,10 @@ export default class CheckinForm extends React.Component {
   render () {
     const commits = this.state.commitsWindow
     ? <div>
-      <label>Add commits</label>
-
-        { this.state.commits.map(commit => {
-          console.log(commit)
-          return (
-            <div key={commit.id}>
-              <input type="checkbox" onClick={this.selectCommit} value={commit.payload.commits[0].message} /><span className='checkin-commit-msg'>{commit.payload.commits[0].message.slice(0, 50)} ...</span>
-            </div>
-          )
-        })}
-        <button onClick={this.collapseCommitsWindow} className='pure-button button-danger button-small'>Cancel</button>
+        <Commits className='checkin-commits' commits = {this.state.commitsWindow}/>
+        <button onClick={this.collapseCommitsWindow} className='pure-button button-danger button-small remove-checkin-commits'>Cancel</button>
       </div>
-    : <button className='pure-button button-small' onClick={this.expandCommitsWindow}>Add commits</button>
+    : <button className='pure-button button-small checkin-add-commits' onClick={this.expandCommitsWindow}>Add commits</button>
 
     return (
       <div className='pure-u-3-5'>

@@ -53,14 +53,11 @@ export default class AuthService {
   }
 
   fetch(url, options) {
-    // performs api calls sending the required authentication headers
     const headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
       'User-Agent': 'Checkin'
     }
-    // if logged in, includes the authorization header
-    console.log('Here is the token', this.getToken())
 
     if (this.loggedIn()) {
       headers['Authorization'] = 'Bearer ' + this.getToken()
@@ -70,7 +67,7 @@ export default class AuthService {
       headers
     })
       .then(response => response.json())
-      .then(json => Promise.resolve(console.log(json)))// to parse the response as json
+      .then(json => Promise.resolve(console.log(json)))
   }
 
   logout() {
