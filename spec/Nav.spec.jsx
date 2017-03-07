@@ -8,6 +8,11 @@ import Nav from '../src/partials/nav'
 describe('<Nav />', () => {
   let wrapper
   let auth = {
+    getProfile: () => {
+      return {
+        picture: 'http://hereisthepicture.com'
+      }
+    },
     login: () => {},
     logout: () => {}
   }
