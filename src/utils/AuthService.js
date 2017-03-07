@@ -5,7 +5,7 @@ export default class AuthService {
   constructor(clientId, domain) {
     this.lock = new AuthOLock(clientId, domain, {
       auth: {
-        redirectUrl: 'http://localhost:8080/login',
+        redirectUrl: __CHECKIN_URL__ + '/login',
         responseType: 'token'
       }
     })

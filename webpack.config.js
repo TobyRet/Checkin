@@ -39,6 +39,10 @@ module.exports = function (env) {
         '__AUTH0_DOMAIN__',
         process.env.AUTH0_DOMAIN
       ),
+      parts.setFreeVariable(
+        '__CHECKIN_URL__',
+        process.env.CHECKIN_URL
+      ),
       parts.extractCSS()
     ])
   }
