@@ -1,8 +1,6 @@
 const dotEnv = require('dotenv')
 dotEnv.config()
 const path = require('path')
-const HtmlWebpackTemplate = require('html-webpack-template')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const merge = require('webpack-merge')
 const webpack = require('webpack')
 const parts = require('./webpack.parts')
