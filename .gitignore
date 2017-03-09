@@ -7,3 +7,4 @@ npm-debug.log
 target
 .DS_Store
 .env
+default-env.sh
