@@ -22,6 +22,7 @@ export default class CheckinForm extends React.Component {
   }
 
   expandCommitsWindow(e) {
+    e.preventDefault()
     this.setState({commitsWindow: true})
     const url = 'https://api.github.com/users/tobyret/events'
 
@@ -31,7 +32,7 @@ export default class CheckinForm extends React.Component {
       })
   }
 
-  collapseCommitsWindow(e) {
+  collapseCommitsWindow() {
     this.setState({commitsWindow: false})
   }
 
@@ -68,7 +69,7 @@ export default class CheckinForm extends React.Component {
   render () {
     const commits = this.state.commitsWindow
     ? <div>
-        <Commits className='checkin-commits' commits = {this.state.commitsWindow}/>
+        <Commits className='checkin-commits' commits = {this.state.commits} selectCommit={this.selectCommit}/>
         <button onClick={this.collapseCommitsWindow} className='pure-button button-danger button-small remove-checkin-commits'>Cancel</button>
       </div>
     : <button className='pure-button button-small checkin-add-commits' onClick={this.expandCommitsWindow}>Add commits</button>
