@@ -13,7 +13,7 @@ const PATHS = {
 }
 
 const PORT = process.env.PORT
-const CHECKIN_HOST = process.env.CHECKIN_HOST
+const CHECKIN_URL = process.env.CHECKIN_URL
 const AUTH0_CLIENT_ID = process.env.AUTH0_CLIENT_ID
 const AUTH0_DOMAIN = process.env.AUTH0_DOMAIN
 
@@ -42,7 +42,7 @@ module.exports = function (env) {
           new webpack.DefinePlugin({
             AUTH0_CLIENT_ID: JSON.stringify(AUTH0_CLIENT_ID),
             AUTH0_DOMAIN: JSON.stringify(AUTH0_DOMAIN),
-            CHECKIN_HOST: JSON.stringify(CHECKIN_HOST),
+            CHECKIN_URL: JSON.stringify(CHECKIN_URL),
             PORT: JSON.stringify(PORT)
           })
         ]
@@ -60,7 +60,7 @@ module.exports = function (env) {
       'AUTH0_DOMAIN', AUTH0_DOMAIN
     ),
     parts.setFreeVariable(
-      'CHECKIN_HOST', CHECKIN_HOST
+      'CHECKIN_URL', CHECKIN_URL
     ),
     parts.setFreeVariable(
       'PORT', PORT
