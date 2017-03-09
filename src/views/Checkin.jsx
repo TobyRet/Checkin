@@ -22,7 +22,6 @@ export default class CheckinForm extends React.Component {
   }
 
   expandCommitsWindow(e) {
-    e.preventDefault()
     this.setState({commitsWindow: true})
     const url = 'https://api.github.com/users/tobyret/events'
 
