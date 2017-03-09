@@ -318,6 +318,10 @@ a.pure-button-primary {
     text-align: center;
 }
 
+.checkin-add-commits {
+    margin-top: 0.5em;
+}
+
 .standup-container {
     padding-top: 5em;
 }
@@ -374,4 +378,14 @@ a.pure-button-primary {
 
 .checkin-commit-msg {
     margin-left: 1em;
+}
+
+.standup-report h4 {
+    margin-top: 1em;
+    margin-bottom: 0.25em;
+}
+
+.standup-report p {
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
 }
