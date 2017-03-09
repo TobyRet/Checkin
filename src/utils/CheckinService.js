@@ -18,7 +18,7 @@ function getCheckins() {
       date: '2017-02-09T11:03:40.225Z',
       today: 'Pumping iron, fix my wrestling pants, buying new bandana',
       yesterday: 'Practiced shouting "Oh yeeeeeeaah"',
-      question: 'Does WWF still exist?',
+      questions: 'Does WWF still exist?',
       selectedCommits: ['[FIE-567] - Fixed broken tests', '[FIE-879] - Add Randy Savage to Blacklist'],
       reportWindow: false,
     }
@@ -34,7 +34,7 @@ function getCheckins() {
       date: '2017-02-09T11:02:40.225Z',
       today: 'Making America great ... Going to hair dressers',
       yesterday: 'Made America great again',
-      question: 'Can you believe what happened in Sweden?!',
+      questions: 'Can you believe what happened in Sweden?!',
       selectedCommits: ['[FIE-456] - Added Piwik to my personal website', '[FIE-566] - Dockerized all the things'],
       reportWindow: false,
     }

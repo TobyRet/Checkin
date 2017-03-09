@@ -27,7 +27,7 @@ export default class Standup extends React.Component {
           <h4>TODAY</h4>
           <p>{checkin.checkin.today}</p>
           <h4 className='standup-report-h4'>BLOCKERS</h4>
-          <p>{checkin.checkin.question}</p>
+          <p>{checkin.checkin.questions}</p>
         </div>
         <button onClick={this.closeReportWindow.bind(this, checkin.profile.nickname)} className='pure-button pure-button-primary standup-report-close-btn'>Close</button>
       </div>
