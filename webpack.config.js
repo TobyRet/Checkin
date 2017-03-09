@@ -1,5 +1,6 @@
 const dotEnv = require('dotenv')
 dotEnv.config()
+
 const path = require('path')
 const merge = require('webpack-merge')
 const webpack = require('webpack')
@@ -10,6 +11,11 @@ const PATHS = {
   src: path.join(__dirname, 'src'),
   build: path.join(__dirname, 'build')
 }
+
+const PORT = process.env.PORT
+const CHECKIN_HOST = process.env.CHECKIN_HOST
+const AUTH0_CLIENT_ID = process.env.AUTH0_CLIENT_ID
+const AUTH0_DOMAIN = process.env.AUTH0_DOMAIN
 
 const common = merge([
   {
@@ -34,9 +40,10 @@ module.exports = function (env) {
       {
         plugins: [
           new webpack.DefinePlugin({
-            AUTH0_CLIENT_ID: JSON.stringify(process.env.AUTH0_CLIENT_ID),
-            AUTH0_DOMAIN: JSON.stringify(process.env.AUTH0_DOMAIN),
-            CHECKIN_URL: JSON.stringify(process.env.CHECKIN_URL)
+            AUTH0_CLIENT_ID: JSON.stringify(AUTH0_CLIENT_ID),
+            AUTH0_DOMAIN: JSON.stringify(AUTH0_DOMAIN),
+            CHECKIN_HOST: JSON.stringify(CHECKIN_HOST),
+            PORT: JSON.stringify(PORT)
           })
         ]
       },
@@ -47,16 +54,16 @@ module.exports = function (env) {
   return merge([
     common,
     parts.setFreeVariable(
-      'AUTH0_CLIENT_ID',
-      process.env.AUTH0_CLIENT_ID
+      'AUTH0_CLIENT_ID', AUTH0_CLIENT_ID
     ),
     parts.setFreeVariable(
-      'AUTH0_DOMAIN',
-      process.env.AUTH0_DOMAIN
+      'AUTH0_DOMAIN', AUTH0_DOMAIN
     ),
     parts.setFreeVariable(
-      'CHECKIN_URL',
-      process.env.CHECKIN_URL
+      'CHECKIN_HOST', CHECKIN_HOST
+    ),
+    parts.setFreeVariable(
+      'PORT', PORT
     ),
     {
       plugins: [
