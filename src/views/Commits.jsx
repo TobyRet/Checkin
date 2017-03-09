@@ -8,7 +8,7 @@ export default (props) => {
         return (
           <div key={commit.id}>
             <input type="checkbox" onClick={props.selectCommit} value={commit.payload.commits[0].message}/><span
-            className='checkin-commit-msg'>{commit.payload.commits[0].message.slice(0, 75)} ...</span>
+            className='checkin-commit-msg'>{commit.payload.commits[0].message}</span>
           </div>
         )
       })}

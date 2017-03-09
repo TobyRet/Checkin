@@ -9,7 +9,7 @@ import AuthService from '../utils/AuthService'
 import Container from '../containers/Container'
 import {fetchCommits} from '../utils/GithubService'
 
-const auth = new AuthService(__AUTH0_CLIENT_ID__, __AUTH0_DOMAIN__)
+const auth = new AuthService(AUTH0_CLIENT_ID, AUTH0_DOMAIN)
 
 const requireAuth = (nextState, replace) => {
   if(!auth.loggedIn()) {

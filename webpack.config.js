@@ -1,8 +1,6 @@
 const dotEnv = require('dotenv')
 dotEnv.config()
 const path = require('path')
-const HtmlWebpackTemplate = require('html-webpack-template')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const merge = require('webpack-merge')
 const webpack = require('webpack')
 const parts = require('./webpack.parts')
@@ -24,16 +22,7 @@ const common = merge([
     },
     resolve: {
       extensions: ['.js', '.jsx']
-    },
-    plugins: [
-      new HtmlWebpackPlugin({
-        template: HtmlWebpackTemplate,
-        title: 'Check-in',
-        appMountId: 'app',
-        mobile: true,
-        inject: false
-      })
-    ]
+    }
   },
   parts.loadJavascript(PATHS.src)
 ])
@@ -49,15 +38,15 @@ module.exports = function (env) {
   return merge([
     common,
     parts.setFreeVariable(
-      '__AUTH0_CLIENT_ID__',
+      'AUTH0_CLIENT_ID',
       process.env.AUTH0_CLIENT_ID
     ),
     parts.setFreeVariable(
-      '__AUTH0_DOMAIN__',
+      'AUTH0_DOMAIN',
       process.env.AUTH0_DOMAIN
     ),
     parts.setFreeVariable(
-      '__CHECKIN_URL__',
+      'CHECKIN_URL',
       process.env.CHECKIN_URL
     ),
     {
