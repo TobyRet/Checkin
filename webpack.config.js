@@ -1,6 +1,8 @@
 const dotEnv = require('dotenv')
 dotEnv.config()
 const path = require('path')
+const HtmlWebpackTemplate = require('html-webpack-template')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const merge = require('webpack-merge')
 const webpack = require('webpack')
 const parts = require('./webpack.parts')
@@ -22,7 +24,16 @@ const common = merge([
     },
     resolve: {
       extensions: ['.js', '.jsx']
-    }
+    },
+    plugins: [
+      new HtmlWebpackPlugin({
+        template: HtmlWebpackTemplate,
+        title: 'Check-in',
+        appMountId: 'app',
+        mobile: true,
+        inject: false
+      })
+    ]
   },
   parts.loadJavascript(PATHS.src)
 ])
@@ -31,18 +42,6 @@ module.exports = function (env) {
   if (env === 'production') {
     return merge([
       common,
-      parts.setFreeVariable(
-        '__AUTH0_CLIENT_ID__',
-        process.env.AUTH0_CLIENT_ID
-      ),
-      parts.setFreeVariable(
-        '__AUTH0_DOMAIN__',
-        process.env.AUTH0_DOMAIN
-      ),
-      parts.setFreeVariable(
-        '__CHECKIN_URL__',
-        process.env.CHECKIN_URL
-      ),
       parts.extractCSS()
     ])
   }
@@ -56,6 +55,10 @@ module.exports = function (env) {
     parts.setFreeVariable(
       '__AUTH0_DOMAIN__',
       process.env.AUTH0_DOMAIN
+    ),
+    parts.setFreeVariable(
+      '__CHECKIN_URL__',
+      process.env.CHECKIN_URL
     ),
     {
       plugins: [
