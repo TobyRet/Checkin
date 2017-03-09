@@ -62,6 +62,7 @@ export default class CheckinForm extends React.Component {
       selectedCommits: this.state.selectedCommits
     }
     localStorage.setItem('checkin', JSON.stringify(checkin))
+    localStorage.setItem('checkedin', JSON.stringify(true))
     window.location.href ='/stand-up'
   }
 

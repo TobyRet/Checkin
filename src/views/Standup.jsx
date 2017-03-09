@@ -12,22 +12,21 @@ export default class Standup extends React.Component {
   }
 
   report(checkin) {
-    console.log(JSON.stringify(checkin))
     return checkin.checkin.reportWindow
       ?
       <div>
         <div className='standup-report'>
           <h3>My Report</h3>
-          <h4>Yesterday</h4>
+          <h4 className='standup-report-h4'>YESTERDAY</h4>
           <p>{checkin.checkin.yesterday}</p>
-          <p><strong>Commits</strong></p>
+          <p><strong>Commits:</strong></p>
           <ul>
             <li><a href=''>{checkin.checkin.selectedCommits[0]}</a></li>
             <li>< a href=''>{checkin.checkin.selectedCommits[1]}</a></li>
           </ul>
-          <h4>Today</h4>
+          <h4>TODAY</h4>
           <p>{checkin.checkin.today}</p>
-          <h4>Questions / Blockers</h4>
+          <h4 className='standup-report-h4'>BLOCKERS</h4>
           <p>{checkin.checkin.question}</p>
         </div>
         <button onClick={this.closeReportWindow.bind(this, checkin.profile.nickname)} className='pure-button pure-button-primary standup-report-close-btn'>Close</button>
@@ -70,7 +69,7 @@ export default class Standup extends React.Component {
             <img src={checkin.profile.picture} className='pure-img standup-avatar' />
           </div>
           <div className='standup-summary'>
-            {checkin.checkin
+            {checkin.checkedin
               ? <div>
                   <h3>{moment(checkin.checkin.date).format('h:mma')}</h3>
                   <p><strong>{checkin.profile.nickname}</strong> has checked in!</p>
@@ -86,7 +85,7 @@ export default class Standup extends React.Component {
     return (
       <div className='standup-container'>
         <h1>Avengers Team Standup</h1>
-        <h2>14 Feb 2017</h2>
+        <h2>{moment().format('MMMM Do YYYY')}</h2>
         <div>
           <ul className='standup-checkins'>
             {renderedCheckins}
