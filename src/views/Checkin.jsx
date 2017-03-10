@@ -23,7 +23,8 @@ export default class CheckinForm extends React.Component {
 
   expandCommitsWindow(e) {
     this.setState({commitsWindow: true})
-    const url = 'https://api.github.com/users/tobyret/events'
+    const githubNickName = JSON.parse(localStorage.getItem('profile')).nickname
+    const url = `https://api.github.com/users/${githubNickName}/events`
 
     this.props.route.fetchCommits(url)
       .then(commits => {
