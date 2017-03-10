@@ -21,7 +21,7 @@ export default class CheckinForm extends React.Component {
     this.selectCommit= this.selectCommit.bind(this)
   }
 
-  expandCommitsWindow(e) {
+  expandCommitsWindow() {
     this.setState({commitsWindow: true})
     const githubNickName = JSON.parse(localStorage.getItem('profile')).nickname
     const url = `https://api.github.com/users/${githubNickName}/events`

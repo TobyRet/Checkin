@@ -12,6 +12,7 @@ describe('<Checkin />', () => {
   let wrapper
 
   beforeEach(() => {
+    mockLocalStorage()
     wrapper = shallow(<Checkin route={route} />)
   })
 
@@ -22,4 +23,12 @@ describe('<Checkin />', () => {
     wrapper.find('.remove-checkin-commits').simulate('click')
     expect(wrapper.find('.checkin-commits')).to.have.length(0)
   })
+
+  function mockLocalStorage() {
+    global.localStorage = {
+      getItem: () => {
+        return '{}'
+      }
+    }
+  }
 })
