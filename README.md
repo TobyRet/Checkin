@@ -4,7 +4,7 @@ Remote-friendly scrum check-ins without the annoying meetings. Based on an proje
 
 I built this purely as a means to try out libraries that interest me and play with things like Webpack, React testing etc etc.
  
-Currently this is a *prototype* which is deployed via Heroku at https://safe-cliffs-88589.herokuapp.com/
+Currently this is a *prototype* built as part of a company Hack Day. You can see a live version at https://safe-cliffs-88589.herokuapp.com/
  
 To do:
 
